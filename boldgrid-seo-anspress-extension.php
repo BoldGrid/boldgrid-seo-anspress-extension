@@ -22,13 +22,22 @@
  * Domain Path: /languages
  */
 
-if ( ! is_plugin_active( 'boldgrid-seo/boldgrid-seo.php' ) ) {
-	add_action( 'admin_notices', 'bgseo_anspress_error' );
-	deactivate_plugins( 'boldgrid-seo-anspress-extension.php' );
-	if ( isset( $_GET['activate'] ) ) {
-		unset( $_GET['activate'] );
+/**
+ * Initialize extension check.
+ *
+ * @since 1.0.0
+ */
+function bgseo_anspress_extension() {
+	if ( ! is_plugin_active( 'boldgrid-seo/boldgrid-seo.php' ) ) {
+		add_action( 'admin_notices', 'bgseo_anspress_error' );
+		deactivate_plugins( 'boldgrid-seo-anspress-extension/boldgrid-seo-anspress-extension.php' );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 	}
 }
+
+add_action( 'admin_init', 'bgseo_anspress_extension' );
 
 /**
  * Generates the admin notice if the BoldGrid SEO plugin is not
