@@ -13,7 +13,7 @@
  * Plugin Name: BoldGrid SEO Anspress Extension
  * Plugin URI: http://www.boldgrid.com
  * Description: Anspress compatibility extension for BoldGrid SEO
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: BoldGrid.com <wpb@boldgrid.com>
  * Author URI: http://www.boldgrid.com
  * License: GPL-2.0+
@@ -28,7 +28,7 @@
  * @since 1.0.0
  */
 function bgseo_anspress_extension() {
-	if ( ! is_plugin_active( 'boldgrid-seo/boldgrid-seo.php' ) ) {
+	if ( ! class_exists( 'Boldgrid_Seo' ) ) {
 		add_action( 'admin_notices', 'bgseo_anspress_error' );
 		deactivate_plugins( 'boldgrid-seo-anspress-extension/boldgrid-seo-anspress-extension.php' );
 		if ( isset( $_GET['activate'] ) ) {
